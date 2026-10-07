@@ -1,0 +1,355 @@
+<title>噗嚨共工作人員分工</title>
+<meta name="description" content="2026噗嚨共家族旅遊 工作人員幕後分工表">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* 版面:手機直式,頂部固定三個分頁(分工/時間軸/道具);秋天版玩水配色:湖水綠藍為主,南瓜橘、銀杏黃點綴,Day 1 楓葉紅、Day 2 湖水綠藍、Day 3 橄欖綠;固定淺色底,不跟手機深色模式 */
+:root{
+  --paper:#FFFBF3; --card:#FFFFFF; --sunk:#FBF1E2;
+  --ink:#3B2E25; --muted:#7D6B5D; --line:#F0E2CC;
+  --teal:#16777A; --teals:#D6EEEC; --on-teal:#FFFFFF;
+  --hero:#16777A; --on-hero:#FFFFFF;
+  --pumpkin:#E0691F; --pumpkins:#FDE3CF; --pumpkin-ink:#8A3B0C;
+  --ginkgo:#F2B632; --ginkgos:#FCEFC9; --ginkgo-ink:#6B4A00;
+  --maple:#C0402C; --maples:#F8DCD5;
+  --olive:#5F7F2E; --olives:#E4ECD2;
+  --f-display:"Huninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --c:var(--teal); --cs:var(--teals);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.3;text-wrap:balance;margin:0}
+p,ul{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ginkgo);outline-offset:2px;border-radius:8px}
+.d1{--c:var(--maple);--cs:var(--maples)} .d2{--c:var(--teal);--cs:var(--teals)} .d3{--c:var(--olive);--cs:var(--olives)}
+.inner{max-width:720px;margin:0 auto;padding-inline:16px}
+
+/* 頁首:湖水綠藍底,飄幾片葉子 */
+.hero{background:var(--hero);color:var(--on-hero);position:relative;overflow:hidden}
+.hero .inner{padding-block:28px 26px;display:flex;flex-direction:column;gap:6px;position:relative}
+.hero .eyebrow{font-size:13px;letter-spacing:.14em;opacity:.9}
+.hero h1{font-size:30px}
+.hero h1 span{color:var(--ginkgo)}
+.hero p{font-size:14px;opacity:.92}
+.leaf{position:absolute;border-radius:0 100% 0 100%;opacity:.95}
+.leaf.a{width:54px;height:54px;background:var(--pumpkin);right:22px;top:18px;transform:rotate(18deg)}
+.leaf.b{width:30px;height:30px;background:var(--ginkgo);right:86px;top:62px;transform:rotate(-30deg)}
+.leaf.c{width:22px;height:22px;background:var(--maple);right:40px;top:86px;transform:rotate(60deg)}
+@media (max-width:420px){ .leaf.a{right:10px;top:12px;width:40px;height:40px} .leaf.b{right:56px;top:58px} .leaf.c{display:none} .hero h1{font-size:25px;padding-right:56px} }
+
+/* 分頁列(固定在上方) */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding-block:10px}
+.tabs button{border:0;background:var(--sunk);border-radius:12px;padding:8px 4px;font-family:var(--f-display);font-size:17px;cursor:pointer;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--teal);color:var(--on-teal);box-shadow:inset 0 -4px 0 var(--pumpkin)}
+.finder{display:flex;flex-direction:column;gap:6px;padding-bottom:10px}
+.finder p{font-size:13px;color:var(--muted)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips button{flex:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 12px;font-size:15px;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--pumpkin);border-color:var(--pumpkin);color:#FFFFFF}
+
+main .inner{padding-block:24px 64px;display:flex;flex-direction:column;gap:20px}
+h2{font-size:24px}
+.lead{font-size:14px;color:var(--muted)}
+
+/* 分工 */
+.roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.role{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.role h3{font-size:18px;display:flex;align-items:center;gap:8px}
+.dot{width:12px;height:12px;border-radius:0 100% 0 100%;flex:none;background:var(--k)}
+.role p{font-size:14px;color:var(--muted)}
+.who{display:flex;flex-wrap:wrap;gap:6px}
+.who b,.who button{font-weight:500;background:var(--pumpkins);color:var(--pumpkin-ink);border:0;border-radius:999px;padding:2px 12px;font-size:15px}
+.who button{cursor:pointer}
+.who button::after{content:" ›";opacity:.7}
+.who button:hover{background:var(--pumpkin);color:#FFFFFF}
+.note{background:var(--ginkgos);color:var(--ink);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.note h3{font-size:18px;color:var(--ginkgo-ink)}
+.note ul{padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+
+/* 時間軸 */
+.day{display:flex;flex-direction:column;gap:14px}
+.day + .day{margin-top:24px}
+.dayhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dayhead h2{background:var(--c);color:#FFFFFF;border-radius:10px;padding:2px 12px;font-size:20px}
+.dayhead span{font-size:14px;color:var(--muted)}
+.slot{display:grid;grid-template-columns:64px 1fr;gap:12px}
+.time{font-family:var(--f-display);font-size:18px;color:var(--c);font-variant-numeric:tabular-nums;line-height:1.4;padding-top:8px}
+.time small{display:block;font-family:var(--f-body);font-size:12px;color:var(--muted)}
+.slotbody{display:flex;flex-direction:column;gap:8px;min-width:0}
+.slotbody > h3{font-size:18px;padding-top:6px}
+.task{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.task .who b{background:var(--cs);color:var(--ink);font-size:14px}
+.task ul{padding-left:1.15em;display:flex;flex-direction:column;gap:2px;font-size:15px}
+.tip{font-size:14px;color:var(--muted)}
+.tip b{color:var(--ginkgo-ink);background:var(--ginkgos);border-radius:6px;padding:0 6px;font-weight:500;margin-right:6px}
+
+/* 道具 */
+.props{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.prop{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.prop .top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.prop h3{font-size:18px}
+.prop .at{font-size:13px;color:var(--c);background:var(--cs);border-radius:6px;padding:0 8px}
+.prop .owner{font-size:14px;color:var(--muted)}
+.checks{list-style:none;padding:0;display:flex;flex-direction:column;gap:2px}
+.checks label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:3px 0}
+.checks input{width:18px;height:18px;margin-top:4px;accent-color:var(--olive);flex:none}
+.checks input:checked + span{color:var(--muted);text-decoration:line-through}
+.count{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.count.done{color:var(--olive);font-weight:500}
+footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
+@media (max-width:420px){ .slot{grid-template-columns:58px 1fr;gap:8px} .time{font-size:16px} }
+</style>
+
+<div class="hero">
+  <i class="leaf a"></i><i class="leaf b"></i><i class="leaf c"></i>
+  <div class="inner">
+    <div class="eyebrow">工作人員專用・幕後分工</div>
+    <h1><span>2026</span>噗嚨共家族旅遊</h1>
+    <p>10/24（六）– 10/26（一）・金村花園民宿・總召整理</p>
+  </div>
+</div>
+
+<div class="bar">
+  <div class="inner">
+    <div class="tabs" role="tablist" aria-label="切換內容">
+      <button type="button" role="tab" id="t-roster" aria-controls="p-roster" aria-selected="true">分工</button>
+      <button type="button" role="tab" id="t-timeline" aria-controls="p-timeline" aria-selected="false">時間軸</button>
+      <button type="button" role="tab" id="t-props" aria-controls="p-props" aria-selected="false">道具</button>
+    </div>
+    <div class="finder" id="finder" hidden>
+      <p>點自己的名字，只顯示你的工作；點「全部」看所有人的工作</p>
+      <div class="chips" id="chips" role="group" aria-label="依人篩選"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section class="inner" id="p-roster" role="tabpanel" aria-labelledby="t-roster">
+    <div>
+      <h2>分工一覽</h2>
+      <p class="lead">點名字，直接看他要做的工作</p>
+    </div>
+    <div class="roster" id="rosterGrid"></div>
+    <div class="note">
+      <h3>備註</h3>
+      <ul>
+        <li>每一項列的兩位是<b>主要負責人</b>，其他工作人員輔助，大家互相支援。</li>
+        <li>Day 1 晚上<b>燈飾、投影機弄好後</b>，柏霖、祈芸、君君、竑銘就去幫禹丞、沛涵<b>灌水球</b>。</li>
+        <li>自己的項目做完，先問大姐或小臻哪一組還沒好，再過去幫忙。</li>
+        <li>水球碎片、麵粉、晚會後收燈飾，都是<b>大家一起</b>收拾。</li>
+      </ul>
+    </div>
+    <footer>有問題直接找大姐（卉如）、小臻</footer>
+  </section>
+
+  <section class="inner" id="p-timeline" role="tabpanel" aria-labelledby="t-timeline" hidden></section>
+
+  <section class="inner" id="p-props" role="tabpanel" aria-labelledby="t-props" hidden>
+    <div>
+      <h2>六關道具清單</h2>
+      <p class="lead">大姐、小臻、晏丞逐關確認。打勾只存在你自己的手機</p>
+    </div>
+    <div class="props" id="propGrid"></div>
+  </section>
+</main>
+
+<script>
+const G = {
+  ctrl:['大姐','小臻','晏丞'],
+  host:['啟宏哥哥','惠琪姐姐'],
+  light:['柏霖','祈芸'],
+  water:['禹丞','沛涵'],
+  av:['君君','竑銘'],
+  table:['柏勳','萱萱'],
+};
+const ALL = Object.values(G).flat();
+
+/* [標題, 組別, 說明, 葉子顏色] */
+const ROSTER = [
+  ['活動總控、遊戲確認、籤筒', G.ctrl, '全部遊戲流程、道具和設備最後確認，現場帶第 1–5 關', '--pumpkin'],
+  ['誰是我的枕邊人 主持', G.host, 'Day 2 晚會第 6 關，cue 人上台、進行活動', '--maple'],
+  ['燈飾佈置', G.light, '民宿燈飾、照片佈置、擺放位置，確認可以正常亮', '--ginkgo'],
+  ['水球、水槍、潑水道具', G.water, '灌水球、準備水槍和潑水道具，團康時藏水球', '--teal'],
+  ['投影機、投影幕、音響', G.av, '架設位置、投影播放、音響、麥克風測試和現場操作', '--olive'],
+  ['桌椅搬動、麵粉清潔', G.table, '團康和晚會前後擺桌椅，麵粉關前鋪地墊，結束後帶大家一起清理', '--pumpkin'],
+  ['三天拍照', ['小臻'], '小臻主要負責：大合照、遊戲過程、晚會。其他人有空就幫忙多捕捉畫面，照片都丟家族群組', '--ginkgo'],
+];
+
+/* 時間軸:[時間, 小字, 標題, [ [負責人, [工作…]] … ], 提醒] */
+const DAYS = [
+ {cls:'d1', title:'Day 1 晚上', date:'10/24（六）', note:'晚餐 58甕仔雞後回到民宿', slots:[
+  ['到民宿','先做','全體場勘', [
+    [ALL, ['看團康場地（玩水區）、晚會場地、外燴餐車位置','確認插座、延長線、水龍頭和水管在哪裡','定好安全區、設備擺放區，設備要離玩水區遠一點']],
+  ]],
+  ['場勘後','分頭','各組準備', [
+    [G.light, ['確認燈飾、照片佈置要放的位置','把燈飾掛好、照片擺好，通電測試可以正常亮']],
+    [G.av, ['決定投影機、投影幕、音響的架設位置','測試投影可以正常播放（影片、照片）','測試音響、兩支麥克風都有聲音，順便準備第 4 關的歌']],
+    [G.water, ['清點水球、水槍、水桶、水瓢、臉盆、雨傘','開始灌水球，灌好放在水桶裡']],
+    [G.ctrl, ['做「這一瓢，我敬你」籤筒（全員名字籤）','做麵粉關的懲罰籤','對照道具清單逐關確認','準備第 6 關上場名單（三輪，每輪 4 對）']],
+    [G.table, ['清點民宿桌椅數量','規劃團康、晚餐、晚會三種擺法']],
+  ]],
+  ['燈飾、投影','弄好後','支援灌水球', [
+    [[...G.light,...G.av], ['燈飾和投影機都確認完，就去幫禹丞、沛涵灌水球']],
+  ], '水球數量：第 1 關每隊 3 顆，第 3 關要藏的另外算，寧可多灌'],
+ ]},
+ {cls:'d2', title:'Day 2', date:'10/25（日）', note:'白天大佛、淺田屋、田尾，16:15 回民宿開始團康', slots:[
+  ['出發前','早上','檢查', [
+    [G.water, ['確認水球沒破，水桶放陰涼處']],
+    [G.av, ['投影機、音響收好或蓋好，避免下午被水潑到']],
+  ]],
+  ['16:15','團康','回民宿馬上開始', [
+    [G.table, ['先把團康場地的桌椅移開，清出空間']],
+    [G.ctrl, ['帶第 1 關「球球你別破」、第 2 關「這一瓢，我敬你」','第 2 關負責抽籤筒，抽過的人不再抽']],
+    [G.water, ['第 1、2 關進行時，偷偷把水球、水槍藏到樹下、椅子下、草叢邊、倒扣的水桶裡','藏好跟大姐回報，就開始第 3 關']],
+    [G.ctrl, ['第 3 關「濕身大逃殺」吹哨：一聲長哨開始、三聲短哨全員停手']],
+    [ALL, ['第 3 關結束，大家一起撿水球碎片']],
+  ], '穿可以濕的衣服，手機記得收好'],
+  ['18:00','晚餐','外燴餐車', [
+    [G.table, ['擺好晚餐和晚會的桌椅']],
+    [G.light, ['打開燈飾，確認照片佈置沒被弄亂']],
+    [G.av, ['開投影、音響，麥克風再試一次音']],
+    [G.host, ['跟大姐對第 6 關流程和上場名單']],
+  ]],
+  ['19:00','晚會','第 4–6 關', [
+    [G.ctrl, ['帶第 4 關「當我們同在一起」']],
+    [G.av, ['第 4 關播歌，晚會全程顧音響和麥克風']],
+    [G.ctrl, ['帶第 5 關「拜託你別笑……噗」，計時 3 分鐘、比麵粉、讓輸隊抽懲罰籤']],
+    [G.table, ['第 5 關開始前先鋪好地墊或報紙']],
+    [ALL, ['第 5 關結束，大家一起清麵粉：掃地、擦桌，清完再開始第 6 關']],
+    [G.host, ['主持第 6 關「誰是我的枕邊人」，分三輪，每輪 4 對','cue 人上台、宣布四大鐵律：摘配件、禁出聲、戴眼罩、摸哪裡聽主持人','數「3、2、1」一起拿下眼罩']],
+    [G.ctrl, ['第 6 關準備眼罩、幫主持人叫下一輪的人']],
+  ]],
+  ['晚會後','收場','復原', [
+    [G.av, ['收投影機、投影幕、音響、麥克風']],
+    [ALL, ['晚會結束就收燈飾和照片佈置，大家一起收']],
+    [G.table, ['桌椅歸位']],
+    [G.water, ['水桶、水槍、臉盆收好，最後再撿一次水球碎片']],
+  ]],
+ ]},
+ {cls:'d3', title:'Day 3', date:'10/26（一）', note:'退房出發前', slots:[
+  ['出發前','退房','收尾', [
+    [G.ctrl, ['所有道具、器材點齊上車，民宿環境最後巡一次']],
+  ]],
+ ]},
+];
+
+const PROPS = [
+  {n:1, name:'球球你別破', at:'團康 16:15', owner:'禹丞、沛涵', items:['大水球（每隊 3 顆）','臉盆（每隊 1 個）','計時用手機','輸隊水攻用的水槍']},
+  {n:2, name:'這一瓢，我敬你', at:'團康 16:15', owner:'大姐、小臻、晏丞', items:['籤筒（全員名字籤）','水瓢','裝滿水的水桶','擋水用臉盆','擋水用雨傘']},
+  {n:3, name:'濕身大逃殺', at:'團康 16:15', owner:'禹丞、沛涵', items:['水球（另外灌，要藏的）','水槍','倒扣用水桶','哨子','安全區標示','撿碎片用垃圾袋']},
+  {n:4, name:'當我們同在一起', at:'晚會 19:00', owner:'君君、竑銘', items:['〈當我們同在一起〉音樂檔','音響','麥克風']},
+  {n:5, name:'拜託你別笑……噗', at:'晚會 19:00', owner:'大姐、小臻、晏丞', items:['撲克牌（每人 1 張）','麵粉','鏟麵粉的湯匙','杯子（每隊 1 個）','懲罰籤','地墊或報紙','掃把、畚箕、抹布','濕紙巾']},
+  {n:6, name:'誰是我的枕邊人', at:'晚會 19:00', owner:'啟宏哥哥、惠琪姐姐', items:['眼罩 4 個','上場名單（三輪，每輪 4 對）','麥克風 2 支']},
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const label = n => n === '大姐' ? '大姐（卉如）' : n;
+const tags = arr => `<div class="who">${arr.map(n=>`<b>${esc(n)}</b>`).join('')}</div>`;
+const links = arr => `<div class="who">${arr.map(n=>`<button type="button" data-go="${esc(n)}">${esc(label(n))}</button>`).join('')}</div>`;
+
+/* 分工 */
+document.getElementById('rosterGrid').innerHTML = ROSTER.map(([t,who,d,k]) =>
+  `<div class="role"><h3><i class="dot" style="--k:var(${k})"></i>${esc(t)}</h3>${links(who)}<p>${esc(d)}</p></div>`).join('');
+
+/* 時間軸 */
+document.getElementById('p-timeline').innerHTML = DAYS.map(day => `
+  <div class="day ${day.cls}">
+    <div class="dayhead"><h2>${esc(day.title)}</h2><span>${esc(day.date)}・${esc(day.note)}</span></div>
+    ${day.slots.map(([t,s,h,tasks,tip]) => `
+      <div class="slot">
+        <div class="time">${esc(t)}<small>${esc(s)}</small></div>
+        <div class="slotbody">
+          <h3>${esc(h)}</h3>
+          ${tasks.map(([who,list]) => `
+            <div class="task" data-who="${esc(who.join(','))}">
+              ${tags(who.length === ALL.length ? ['全體工作人員'] : who.map(label))}
+              <ul>${list.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+            </div>`).join('')}
+          ${tip ? `<p class="tip"><b>提醒</b>${esc(tip)}</p>` : ''}
+        </div>
+      </div>`).join('')}
+  </div>`).join('');
+
+/* 道具 */
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem('staff-props') || '{}') || {}; } catch(e) {}
+document.getElementById('propGrid').innerHTML = PROPS.map(p => `
+  <div class="prop ${p.at.startsWith('團康') ? 'd2' : 'd1'}">
+    <div class="top"><h3>第 ${p.n} 關｜${esc(p.name)}</h3><span class="at">${esc(p.at)}</span></div>
+    <span class="owner">道具負責：${esc(p.owner)}</span>
+    <ul class="checks">${p.items.map((x,i) => { const id = `p${p.n}-${i}`;
+      return `<li><label><input type="checkbox" id="${id}" ${saved[id]?'checked':''}><span>${esc(x)}</span></label></li>`; }).join('')}</ul>
+    <span class="count"></span>
+  </div>`).join('');
+function counts(){
+  document.querySelectorAll('.prop').forEach(card => {
+    const boxes = card.querySelectorAll('input'), done = [...boxes].filter(b=>b.checked).length;
+    const c = card.querySelector('.count');
+    c.textContent = done === boxes.length ? `全部確認 ${done} / ${boxes.length}` : `已確認 ${done} / ${boxes.length}`;
+    c.classList.toggle('done', done === boxes.length);
+  });
+}
+document.getElementById('propGrid').addEventListener('change', e => {
+  if (e.target.type !== 'checkbox') return;
+  saved[e.target.id] = e.target.checked;
+  try { localStorage.setItem('staff-props', JSON.stringify(saved)); } catch(err) {}
+  counts();
+});
+counts();
+
+/* 依人篩選 */
+const chips = document.getElementById('chips');
+chips.innerHTML = ['全部', ...ALL].map(n => `<button type="button" data-n="${esc(n)}" aria-pressed="${n==='全部'}">${esc(n)}</button>`).join('');
+function filterBy(n){
+  const all = n === '全部';
+  chips.querySelectorAll('button').forEach(x => {
+    const on = x.dataset.n === n; x.setAttribute('aria-pressed', on);
+    if (on) x.scrollIntoView({block:'nearest', inline:'center'});
+  });
+  document.querySelectorAll('.task').forEach(t => { t.hidden = !all && !t.dataset.who.split(',').includes(n); });
+  document.querySelectorAll('.slot').forEach(sl => { sl.hidden = !sl.querySelector('.task:not([hidden])'); });
+  document.querySelectorAll('.day').forEach(d => { d.hidden = !d.querySelector('.slot:not([hidden])'); });
+}
+chips.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  filterBy(b.dataset.n); toTop();
+});
+
+/* 分頁 */
+const TABS = ['roster','timeline','props'];
+function show(id){
+  TABS.forEach(t => {
+    document.getElementById('p-'+t).hidden = t !== id;
+    document.getElementById('t-'+t).setAttribute('aria-selected', t === id);
+  });
+  document.getElementById('finder').hidden = id !== 'timeline';
+  try { history.replaceState(null, '', '#'+id); } catch(e) {}
+}
+function toTop(){
+  const bar = document.querySelector('.bar');
+  const y = document.querySelector('main').getBoundingClientRect().top + scrollY - bar.offsetHeight;
+  if (scrollY > y) window.scrollTo({top:y});
+}
+document.querySelector('.tabs').addEventListener('click', e => {
+  const b = e.target.closest('[role=tab]'); if (!b) return;
+  show(b.getAttribute('aria-controls').slice(2)); toTop();
+});
+document.querySelector('.tabs').addEventListener('keydown', e => {
+  if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+  const cur = TABS.findIndex(t => document.getElementById('t-'+t).getAttribute('aria-selected') === 'true');
+  const next = TABS[(cur + (e.key === 'ArrowRight' ? 1 : TABS.length - 1)) % TABS.length];
+  show(next); document.getElementById('t-'+next).focus();
+});
+document.getElementById('rosterGrid').addEventListener('click', e => {
+  const b = e.target.closest('[data-go]'); if (!b) return;
+  show('timeline'); filterBy(b.dataset.go); toTop();
+});
+const start = location.hash.slice(1);
+show(TABS.includes(start) ? start : 'roster');
+</script>
