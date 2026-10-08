@@ -99,10 +99,8 @@ h2{font-size:24px}
 /* 道具 */
 .props{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
 .prop{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.prop .top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .prop h3{font-size:18px}
-.prop .at{font-size:13px;color:var(--c);background:var(--cs);border-radius:6px;padding:0 8px}
-.prop .owner{font-size:14px;color:var(--muted)}
+.prop > .who b{font-size:17px;font-weight:700;padding:3px 14px}
 .checks{list-style:none;padding:0;display:flex;flex-direction:column;gap:2px}
 .checks label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:3px 0}
 .checks input{width:18px;height:18px;margin-top:4px;accent-color:var(--olive);flex:none}
@@ -118,7 +116,8 @@ footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
   .hero h1{font-size:40px}
   .hero p{font-size:16px}
   .tabs{max-width:560px}
-  .roster,.props{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .roster{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .props{grid-template-columns:repeat(2,minmax(0,1fr))}
   .slot{grid-template-columns:96px 1fr;gap:20px}
   .time{font-size:22px}
   .slotbody{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));align-items:start}
@@ -162,10 +161,10 @@ footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
     <div class="note">
       <h3>備註</h3>
       <ul>
-        <li>每一項列的兩位是<b>主要負責人</b>，其他工作人員輔助，大家互相支援。</li>
-        <li>Day 1 晚上<b>燈飾、投影機弄好後</b>，柏霖、祈芸、君君、竑銘就去幫禹丞、沛涵<b>灌水球</b>。</li>
+        <li>每一項列的人是<b>主要負責人</b>，其他工作人員輔助，大家互相支援。</li>
+        <li>Day 1 晚上<b>燈飾、桌椅、投影機弄好後</b>，柏霖、柏勳、祈芸、萱萱、君君、竑銘就去幫禹丞、沛涵<b>準備水球</b>。</li>
         <li>自己的項目做完，先問大姐或小臻哪一組還沒好，再過去幫忙。</li>
-        <li>水球碎片、麵粉、晚會後收燈飾，都是<b>大家一起</b>收拾。</li>
+        <li>清潔的部分（水球碎片、麵粉、晚會後收燈飾）都是<b>大家一起</b>整理。</li>
       </ul>
     </div>
     <footer>有問題直接找大姐（卉如）、小臻</footer>
@@ -175,8 +174,8 @@ footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
 
   <section class="inner" id="p-props" role="tabpanel" aria-labelledby="t-props" hidden>
     <div>
-      <h2>六關道具清單</h2>
-      <p class="lead">大姐、小臻、晏丞逐關確認。打勾只存在你自己的手機</p>
+      <h2>準備清單</h2>
+      <p class="lead">找到自己的名字，準備好一項就打勾。打勾只存在你自己的手機</p>
     </div>
     <div class="props" id="propGrid"></div>
   </section>
@@ -186,10 +185,9 @@ footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
 const G = {
   ctrl:['大姐','小臻','晏丞'],
   host:['啟宏哥哥','惠琪姐姐'],
-  light:['柏霖','祈芸'],
+  setup:['柏霖','柏勳','祈芸','萱萱'],
   water:['禹丞','沛涵'],
   av:['君君','竑銘'],
-  table:['柏勳','萱萱'],
 };
 const ALL = Object.values(G).flat();
 
@@ -197,10 +195,9 @@ const ALL = Object.values(G).flat();
 const ROSTER = [
   ['活動總控、遊戲確認、籤筒', G.ctrl, '全部遊戲流程、道具和設備最後確認，現場帶第 1–5 關', '--pumpkin'],
   ['誰是我的枕邊人 主持', G.host, 'Day 2 晚會第 6 關，cue 人上台、進行活動', '--maple'],
-  ['燈飾佈置', G.light, '民宿燈飾、照片佈置、擺放位置，確認可以正常亮', '--ginkgo'],
+  ['燈飾佈置、桌椅安排', G.setup, '民宿燈飾、照片佈置，團康和晚會前後擺桌椅，麵粉關前鋪地墊。弄完就去幫忙準備水球', '--ginkgo'],
   ['水球、水槍、潑水道具', G.water, '灌水球、準備水槍和潑水道具，團康前把公共水球分放三區，第 3 關前發獎勵水球', '--teal'],
   ['投影機、投影幕、音響', G.av, '架設位置、投影播放、音響、麥克風測試和現場操作', '--olive'],
-  ['桌椅搬動、麵粉清潔', G.table, '團康和晚會前後擺桌椅，麵粉關前鋪地墊，結束後帶大家一起清理', '--pumpkin'],
   ['三天拍照', ['小臻'], '小臻主要負責：大合照、遊戲過程、晚會。其他人有空就幫忙多捕捉畫面，照片都丟家族群組', '--ginkgo'],
 ];
 
@@ -211,15 +208,14 @@ const DAYS = [
     [ALL, ['看團康場地（玩水區）、晚會場地、外燴餐車位置','確認插座、延長線、水龍頭和水管在哪裡','定好安全區、設備擺放區，設備要離玩水區遠一點']],
   ]],
   ['場勘後','分頭','各組準備', [
-    [G.light, ['確認燈飾、照片佈置要放的位置','把燈飾掛好、照片擺好，通電測試可以正常亮']],
+    [G.setup, ['確認燈飾、照片佈置要放的位置','把燈飾掛好、照片擺好，通電測試可以正常亮','清點民宿桌椅數量，規劃團康、晚餐、晚會三種擺法']],
     [G.av, ['決定投影機、投影幕、音響的架設位置','測試投影可以正常播放（影片、照片）','測試音響、兩支麥克風都有聲音，順便準備第 4 關的歌']],
     [G.water, ['清點長筷子、大氣球、小水球、水槍、水桶、水瓢、臉盆、雨傘','開始灌水球，灌好放在水桶裡']],
     [G.ctrl, ['做全員名字籤筒（以防萬一，臨時要抽人時用）','做麵粉關的懲罰籤','對照道具清單逐關確認','準備第 6 關上場名單（三輪，每輪 4 對）']],
-    [G.table, ['清點民宿桌椅數量','規劃團康、晚餐、晚會三種擺法']],
   ]],
-  ['燈飾、投影','弄好後','支援灌水球', [
-    [[...G.light,...G.av], ['燈飾和投影機都確認完，就去幫禹丞、沛涵灌水球']],
-  ], '水球數量：第 1 關比賽用的小水球、獎勵水球（三回合共 2000 顆）、第 3 關三個區域的公共水球都要算，寧可多灌'],
+  ['燈飾、投影','弄好後','支援準備水球', [
+    [[...G.setup,...G.av], ['燈飾、桌椅、投影機都確認完，就去幫禹丞、沛涵準備水球']],
+  ], '水球總共 5000 顆，其中 2000 顆是第 1 關獎勵（第 1 回合 500、第 2 回合 500、第 3 回合 1000）'],
  ]},
  {cls:'d2', title:'Day 2', date:'10/25（日）', note:'白天大佛、淺田屋、田尾，16:15 回民宿開始團康', slots:[
   ['出發前','早上','檢查', [
@@ -227,7 +223,7 @@ const DAYS = [
     [G.av, ['投影機、音響收好或蓋好，避免下午被水潑到']],
   ]],
   ['16:15','團康','回民宿馬上開始', [
-    [G.table, ['先把團康場地的桌椅移開，清出空間']],
+    [G.setup, ['先把團康場地的桌椅移開，清出空間']],
     [G.water, ['團康開始前，把第 3 關的公共水球分放三個區域']],
     [G.ctrl, ['帶第 1 關「球球你別破」：三回合計時賽，記下每回合時間和名次','三回合統計完，第一名潑第三名 30 秒，只潑一次','帶第 2 關「這一瓢，我敬你」：每隊派 1 人，3 人一起猜拳，平手重猜，每次換不同隊員上場']],
     [G.water, ['第 1 關每回合結束，記下贏的隊伍拿到幾顆獎勵水球（第 1、2 回合各 500 顆，第 3 回合 1000 顆）','第 3 關開打前，把獎勵水球發給各隊，準備好跟大姐回報']],
@@ -235,8 +231,7 @@ const DAYS = [
     [ALL, ['第 3 關結束，大家一起撿水球碎片']],
   ], '穿可以濕的衣服，手機記得收好'],
   ['18:00','晚餐','外燴餐車', [
-    [G.table, ['擺好晚餐和晚會的桌椅']],
-    [G.light, ['打開燈飾，確認照片佈置沒被弄亂']],
+    [G.setup, ['擺好晚餐和晚會的桌椅','打開燈飾，確認照片佈置沒被弄亂']],
     [G.av, ['開投影、音響，麥克風再試一次音']],
     [G.host, ['跟大姐對第 6 關流程和上場名單']],
   ]],
@@ -244,7 +239,7 @@ const DAYS = [
     [G.ctrl, ['帶第 4 關「當我們同在一起」']],
     [G.av, ['第 4 關播歌，晚會全程顧音響和麥克風']],
     [G.ctrl, ['帶第 5 關「拜託你別笑……噗」，計時 3 分鐘、比麵粉、讓輸隊抽懲罰籤']],
-    [G.table, ['第 5 關開始前先鋪好地墊或報紙']],
+    [G.setup, ['第 5 關開始前先鋪好地墊或報紙']],
     [ALL, ['第 5 關結束，大家一起清麵粉：掃地、擦桌，清完再開始第 6 關']],
     [G.host, ['主持第 6 關「誰是我的枕邊人」，分三輪，每輪 4 對','cue 人上台、宣布四大鐵律：摘配件、禁出聲、戴眼罩、摸哪裡聽主持人','數「3、2、1」一起拿下眼罩']],
     [G.ctrl, ['第 6 關準備眼罩、幫主持人叫下一輪的人']],
@@ -252,8 +247,8 @@ const DAYS = [
   ['晚會後','收場','復原', [
     [G.av, ['收投影機、投影幕、音響、麥克風']],
     [ALL, ['晚會結束就收燈飾和照片佈置，大家一起收']],
-    [G.table, ['桌椅歸位']],
-    [G.water, ['水桶、水槍、臉盆收好，最後再撿一次水球碎片']],
+    [G.setup, ['桌椅歸位']],
+    [G.water, ['水桶、水槍、臉盆、雨傘收好']],
   ]],
  ]},
  {cls:'d3', title:'Day 3', date:'10/26（一）', note:'退房出發前', slots:[
@@ -263,13 +258,12 @@ const DAYS = [
  ]},
 ];
 
+/* 準備清單:依負責人列,不分關卡 [項目名稱, 負責人, 東西…] */
 const PROPS = [
-  {n:1, name:'球球你別破', at:'團康 16:15', owner:'禹丞、沛涵', items:['長筷子','大氣球','小水球','臉盆（每隊 1 個）','計時用手機','獎勵水球（第 1、2 回合各 500 顆，第 3 回合 1000 顆）','第一名潑第三名用的水瓢、水槍']},
-  {n:2, name:'這一瓢，我敬你', at:'團康 16:15', owner:'大姐、小臻、晏丞', items:['籤筒（全員名字籤，以防萬一）','水瓢','裝滿水的水桶','擋水用臉盆','擋水用雨傘']},
-  {n:3, name:'濕身大逃殺', at:'團康 16:15', owner:'禹丞、沛涵', items:['公共水球（分放三個區域）','第 1 關的獎勵水球','裝水球的水桶（三個區域各 1 個）','水槍','哨子','安全區標示','撿碎片用垃圾袋']},
-  {n:4, name:'當我們同在一起', at:'晚會 19:00', owner:'君君、竑銘', items:['〈當我們同在一起〉音樂檔','音響','麥克風']},
-  {n:5, name:'拜託你別笑……噗', at:'晚會 19:00', owner:'大姐、小臻、晏丞', items:['撲克牌（每人 1 張）','麵粉','鏟麵粉的湯匙','杯子（每隊 1 個）','懲罰籤','地墊或報紙','掃把、畚箕、抹布','濕紙巾']},
-  {n:6, name:'誰是我的枕邊人', at:'晚會 19:00', owner:'啟宏哥哥、惠琪姐姐', items:['眼罩 4 個','上場名單（三輪，每輪 4 對）','麥克風 2 支']},
+  ['水球、氣球、水槍', G.water, ['小水球共 5000 顆（其中 2000 顆是第 1 關獎勵：第 1 回合 500、第 2 回合 500、第 3 回合 1000）','大氣球','長筷子','水槍','水瓢','水桶（裝水、裝水球）','臉盆（每隊 1 個）','雨傘（擋水用）']],
+  ['燈飾佈置、桌椅安排', G.setup, ['燈飾','照片佈置','延長線','地墊或報紙（麵粉關用）']],
+  ['投影、音響', G.av, ['投影機','投影幕','音響','麥克風 2 支','〈當我們同在一起〉音樂檔','延長線']],
+  ['麵粉、紙牌、眼罩', G.ctrl, ['麵粉','撲克牌（每人 1 張）','鏟麵粉的湯匙','杯子（每隊 1 個）','懲罰籤','眼罩 4 個','籤筒（全員名字籤，以防萬一）','哨子','安全區標示','計時用手機','第 6 關上場名單（三輪，每輪 4 對）']],
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -302,12 +296,13 @@ document.getElementById('p-timeline').innerHTML = DAYS.map(day => `
 
 /* 道具 */
 let saved = {};
-try { saved = JSON.parse(localStorage.getItem('staff-props') || '{}') || {}; } catch(e) {}
-document.getElementById('propGrid').innerHTML = PROPS.map(p => `
-  <div class="prop ${p.at.startsWith('團康') ? 'd2' : 'd1'}">
-    <div class="top"><h3>第 ${p.n} 關｜${esc(p.name)}</h3><span class="at">${esc(p.at)}</span></div>
-    <span class="owner">道具負責：${esc(p.owner)}</span>
-    <ul class="checks">${p.items.map((x,i) => { const id = `p${p.n}-${i}`;
+const PKEY = 'staff-props-v2';   // 改成依負責人分組,舊的打勾紀錄對不上,換新的 key
+try { saved = JSON.parse(localStorage.getItem(PKEY) || '{}') || {}; } catch(e) {}
+document.getElementById('propGrid').innerHTML = PROPS.map(([title,who,items],k) => `
+  <div class="prop">
+    ${tags(who.map(label))}
+    <h3>${esc(title)}</h3>
+    <ul class="checks">${items.map((x,i) => { const id = `g${k}-${i}`;
       return `<li><label><input type="checkbox" id="${id}" ${saved[id]?'checked':''}><span>${esc(x)}</span></label></li>`; }).join('')}</ul>
     <span class="count"></span>
   </div>`).join('');
@@ -322,7 +317,7 @@ function counts(){
 document.getElementById('propGrid').addEventListener('change', e => {
   if (e.target.type !== 'checkbox') return;
   saved[e.target.id] = e.target.checked;
-  try { localStorage.setItem('staff-props', JSON.stringify(saved)); } catch(err) {}
+  try { localStorage.setItem(PKEY, JSON.stringify(saved)); } catch(err) {}
   counts();
 });
 counts();
