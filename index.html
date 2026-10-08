@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#16777A">
 <title>噗嚨共工作人員分工</title>
-<meta name="description" content="2026噗嚨共家族旅遊 工作人員幕後分工表">
+<meta name="description" content="2026噗嚨共家族旅遊 工作人員道具準備分工">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700&display=swap">
@@ -29,69 +29,100 @@
 [hidden]{display:none!important}
 html,body{overflow-x:hidden}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-text-size-adjust:100%}
-h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.3;text-wrap:balance;margin:0}
-p,ul{margin:0}
-button{font:inherit;color:inherit;touch-action:manipulation}
+h1,h2,h3,h4,h5{font-family:var(--f-display);font-weight:400;line-height:1.3;text-wrap:balance;margin:0}
+p,ul,ol,dl,dd{margin:0}
+button,input,select{font:inherit;color:inherit;touch-action:manipulation}
 :focus-visible{outline:3px solid var(--ginkgo);outline-offset:2px;border-radius:8px}
 .d1{--c:var(--maple);--cs:var(--maples)} .d2{--c:var(--teal);--cs:var(--teals)} .d3{--c:var(--olive);--cs:var(--olives)}
 .inner{max-width:720px;margin:0 auto;padding-inline:16px}
 
-/* 頁首:湖水綠藍底,飄幾片葉子 */
+/* 頁首 */
 .hero{background:var(--hero);color:var(--on-hero);position:relative;overflow:hidden}
-.hero .inner{padding-block:28px 26px;display:flex;flex-direction:column;gap:6px;position:relative}
+.hero .inner{padding-block:24px 22px;display:flex;flex-direction:column;gap:4px;position:relative}
 .hero .eyebrow{font-size:13px;letter-spacing:.14em;opacity:.9}
-.hero h1{font-size:30px}
+.hero h1{font-size:28px}
 .hero h1 span{color:var(--ginkgo)}
 .hero p{font-size:14px;opacity:.92}
 .leaf{position:absolute;border-radius:0 100% 0 100%;opacity:.95}
-.leaf.a{width:54px;height:54px;background:var(--pumpkin);right:22px;top:18px;transform:rotate(18deg)}
-.leaf.b{width:30px;height:30px;background:var(--ginkgo);right:86px;top:62px;transform:rotate(-30deg)}
-.leaf.c{width:22px;height:22px;background:var(--maple);right:40px;top:86px;transform:rotate(60deg)}
-@media (max-width:420px){ .leaf.a{right:10px;top:12px;width:40px;height:40px} .leaf.b{right:56px;top:58px} .leaf.c{display:none} .hero h1{font-size:25px;padding-right:56px} }
+.leaf.a{width:50px;height:50px;background:var(--pumpkin);right:22px;top:16px;transform:rotate(18deg)}
+.leaf.b{width:28px;height:28px;background:var(--ginkgo);right:84px;top:56px;transform:rotate(-30deg)}
+.leaf.c{width:20px;height:20px;background:var(--maple);right:40px;top:78px;transform:rotate(60deg)}
+@media (max-width:420px){ .leaf.a{right:10px;top:12px;width:38px;height:38px} .leaf.b{right:54px;top:54px} .leaf.c{display:none} .hero h1{font-size:24px;padding-right:56px} }
 
 /* 分頁列(固定在上方) */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding-block:10px}
 .tabs button{border:0;background:var(--sunk);border-radius:12px;padding:8px 4px;font-family:var(--f-display);font-size:17px;cursor:pointer;color:var(--muted)}
 .tabs button[aria-selected="true"]{background:var(--teal);color:var(--on-teal);box-shadow:inset 0 -4px 0 var(--pumpkin)}
-.finder{display:flex;flex-direction:column;gap:6px;padding-bottom:10px}
-.finder p{font-size:13px;color:var(--muted)}
-.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
-.chips button{flex:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 12px;font-size:15px;cursor:pointer}
-.chips button[aria-pressed="true"]{background:var(--pumpkin);border-color:var(--pumpkin);color:#FFFFFF}
 
-main .inner{padding-block:24px 64px;display:flex;flex-direction:column;gap:20px}
-h2{font-size:24px}
+/* 時間軸:選名字的下拉選單 */
+.finder{display:flex;align-items:center;gap:10px;padding-bottom:10px}
+.finder label{font-family:var(--f-display);font-size:17px;flex:none}
+.pick{position:relative;flex:1;max-width:320px}
+.pick select{appearance:none;-webkit-appearance:none;width:100%;border:2px solid var(--pumpkin);background:var(--card);border-radius:999px;padding:7px 44px 7px 16px;font-size:17px;font-weight:500;color:var(--pumpkin-ink);cursor:pointer}
+.pick::after{content:"";position:absolute;right:6px;top:50%;width:30px;height:30px;transform:translateY(-50%);border-radius:50%;background:var(--pumpkin) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;pointer-events:none}
+.pick select:focus-visible{outline:3px solid var(--ginkgo);outline-offset:2px}
+
+main .inner{padding-block:22px 64px;display:flex;flex-direction:column;gap:18px}
+h2{font-size:22px}
 .lead{font-size:14px;color:var(--muted)}
 
-/* 分工 */
-.roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.role{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.role h3{font-size:18px;display:flex;align-items:center;gap:8px}
+/* 分工:一行一組 */
+.roster{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.role{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:12px 16px}
+.role + .role{border-top:1px solid var(--line)}
+.role h3{font-size:17px;display:flex;align-items:center;gap:8px}
+.role small{grid-column:1/-1;font-size:13px;color:var(--muted)}
 .dot{width:12px;height:12px;border-radius:0 100% 0 100%;flex:none;background:var(--k)}
-.role p{font-size:14px;color:var(--muted)}
 .who{display:flex;flex-wrap:wrap;gap:6px}
+.role .who{grid-column:1/-1}
 .who b,.who button{font-weight:500;background:var(--pumpkins);color:var(--pumpkin-ink);border:0;border-radius:999px;padding:2px 12px;font-size:15px}
 .who button{cursor:pointer}
 .who button::after{content:" ›";opacity:.7}
 .who button:hover{background:var(--pumpkin);color:#FFFFFF}
-.note{background:var(--ginkgos);color:var(--ink);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
-.note h3{font-size:18px;color:var(--ginkgo-ink)}
-.note ul{padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+.note{background:var(--ginkgos);border-radius:16px;padding:12px 16px}
+.note ul{padding-left:1.2em;display:flex;flex-direction:column;gap:4px;font-size:15px}
+
+/* 第六關鎖定區 */
+.vault{background:var(--card);border:2px dashed var(--maple);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.vault-btn{display:flex;align-items:center;gap:10px;border:0;background:none;padding:0;cursor:pointer;text-align:left;width:100%}
+.vault-btn .lock{width:36px;height:36px;border-radius:50%;background:var(--maples);display:grid;place-items:center;flex:none}
+.vault-btn .lock svg{width:18px;height:18px}
+.vault-btn h3{font-size:18px;color:var(--maple)}
+.vault-btn small{display:block;font-size:13px;color:var(--muted);font-family:var(--f-body)}
+.vault form{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.vault input{width:9em;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:6px 12px;font-size:18px;letter-spacing:.2em}
+.vault form button{border:0;background:var(--maple);color:#FFFFFF;border-radius:10px;padding:7px 16px;cursor:pointer}
+.vault .hint{font-size:13px;color:var(--muted);width:100%}
+.vault .err{font-size:14px;color:var(--maple);width:100%}
+.secret{display:flex;flex-direction:column;gap:12px}
+.secret-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.secret h3{font-size:19px}
+.secret h4{font-size:17px;color:var(--maple)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px}
+.facts dt{color:var(--muted)}
+.steps{padding-left:1.4em;display:flex;flex-direction:column;gap:3px;font-size:15px}
+.rounds{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.round{background:var(--maples);border-radius:12px;padding:8px 12px}
+.round h5{font-size:16px;color:var(--maple)}
+.round ol{padding-left:1.3em;font-size:15px}
+.round .todo{color:var(--muted)}
+.lockagain{align-self:flex-start;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:3px 14px;font-size:14px;cursor:pointer;color:var(--muted)}
 
 /* 時間軸 */
-.day{display:flex;flex-direction:column;gap:14px}
-.day + .day{margin-top:24px}
+.day{display:flex;flex-direction:column;gap:12px}
+.day + .day{margin-top:20px}
 .dayhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.dayhead h2{background:var(--c);color:#FFFFFF;border-radius:10px;padding:2px 12px;font-size:20px}
+.dayhead h2{background:var(--c);color:#FFFFFF;border-radius:10px;padding:2px 12px;font-size:19px}
 .dayhead span{font-size:14px;color:var(--muted)}
 .slot{display:grid;grid-template-columns:64px 1fr;gap:12px}
 .time{font-family:var(--f-display);font-size:18px;color:var(--c);font-variant-numeric:tabular-nums;line-height:1.4;padding-top:8px}
 .time small{display:block;font-family:var(--f-body);font-size:12px;color:var(--muted)}
 .slotbody{display:flex;flex-direction:column;gap:8px;min-width:0}
-.slotbody > h3{font-size:18px;padding-top:6px}
+.slotbody > h3{font-size:17px;padding-top:6px}
 .task{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
 .task .who b{background:var(--cs);color:var(--ink);font-size:14px}
+.task .who b.me{background:var(--pumpkin);color:#FFFFFF}
 .task ul{padding-left:1.15em;display:flex;flex-direction:column;gap:2px;font-size:15px}
 .tip{font-size:14px;color:var(--muted)}
 .tip b{color:var(--ginkgo-ink);background:var(--ginkgos);border-radius:6px;padding:0 6px;font-weight:500;margin-right:6px}
@@ -100,29 +131,30 @@ h2{font-size:24px}
 .props{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
 .prop{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .prop h3{font-size:18px}
-.prop > .who b{font-size:17px;font-weight:700;padding:3px 14px}
+.prop > .who b{font-size:16px;font-weight:700;padding:3px 14px}
 .checks{list-style:none;padding:0;display:flex;flex-direction:column;gap:2px}
 .checks label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:3px 0}
 .checks input{width:18px;height:18px;margin-top:4px;accent-color:var(--olive);flex:none}
 .checks input:checked + span{color:var(--muted);text-decoration:line-through}
 .count{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .count.done{color:var(--olive);font-weight:500}
-footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
+footer{font-size:13px;color:var(--muted);text-align:center;padding-top:8px}
 @media (max-width:420px){ .slot{grid-template-columns:58px 1fr;gap:8px} .time{font-size:16px} }
-/* 電腦、平板橫放:加寬內容,分工和道具三欄,時間軸同一時段的工作並排 */
+/* 電腦、平板橫放:加寬內容,道具兩欄,時間軸同一時段的工作並排 */
 @media (min-width:900px){
   .inner{max-width:1120px;padding-inline:32px}
-  .hero .inner{padding-block:40px 36px}
-  .hero h1{font-size:40px}
+  .hero .inner{padding-block:34px 30px}
+  .hero h1{font-size:38px}
   .hero p{font-size:16px}
   .tabs{max-width:560px}
-  .roster{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .role{grid-template-columns:300px 1fr}
+  .role .who{grid-column:auto}
+  .role small{grid-column:2}
   .props{grid-template-columns:repeat(2,minmax(0,1fr))}
   .slot{grid-template-columns:96px 1fr;gap:20px}
   .time{font-size:22px}
   .slotbody{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));align-items:start}
   .slotbody > h3,.slotbody > .tip{grid-column:1/-1}
-  .chips{flex-wrap:wrap;overflow:visible}
 }
 </style>
 </head>
@@ -131,9 +163,9 @@ footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
 <div class="hero">
   <i class="leaf a"></i><i class="leaf b"></i><i class="leaf c"></i>
   <div class="inner">
-    <div class="eyebrow">工作人員專用・幕後分工</div>
+    <div class="eyebrow">工作人員專用・道具準備分工</div>
     <h1><span>2026</span>噗嚨共家族旅遊</h1>
-    <p>10/24（六）– 10/26（一）・金村花園民宿・總召整理</p>
+    <p>10/24（六）– 10/26（一）・金村花園民宿</p>
   </div>
 </div>
 
@@ -145,8 +177,8 @@ footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
       <button type="button" role="tab" id="t-props" aria-controls="p-props" aria-selected="false">道具</button>
     </div>
     <div class="finder" id="finder" hidden>
-      <p>點自己的名字，只顯示你的工作；點「全部」看所有人的工作</p>
-      <div class="chips" id="chips" role="group" aria-label="依人篩選"></div>
+      <label for="who">我是</label>
+      <div class="pick"><select id="who"></select></div>
     </div>
   </div>
 </div>
@@ -155,18 +187,33 @@ footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
   <section class="inner" id="p-roster" role="tabpanel" aria-labelledby="t-roster">
     <div>
       <h2>分工一覽</h2>
-      <p class="lead">點名字，直接看他要做的工作</p>
+      <p class="lead">點名字，直接看他的時間軸</p>
     </div>
     <div class="roster" id="rosterGrid"></div>
     <div class="note">
-      <h3>備註</h3>
       <ul>
-        <li>每一項列的人是<b>主要負責人</b>，其他工作人員輔助，大家互相支援。</li>
-        <li>Day 1 晚上<b>燈飾、桌椅、投影機弄好後</b>，柏霖、柏勳、祈芸、萱萱、君君、竑銘就去幫禹丞、沛涵<b>準備水球</b>。</li>
-        <li>自己的項目做完，先問大姐或小臻哪一組還沒好，再過去幫忙。</li>
-        <li>清潔的部分（水球碎片、麵粉、晚會後收燈飾）都是<b>大家一起</b>整理。</li>
+        <li>列出來的是主要負責人，大家互相支援。</li>
+        <li>Day 1 晚上燈飾、桌椅、投影弄好，就去幫忙灌水球。</li>
+        <li>撿水球碎片、清麵粉、收燈飾，大家一起整理。</li>
       </ul>
     </div>
+
+    <div class="vault" id="vault">
+      <button type="button" class="vault-btn" id="vaultBtn" aria-expanded="false" aria-controls="vaultBody">
+        <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="#C0402C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+        <span><h3>第六關・主持人專區</h3><small>點開輸入密碼</small></span>
+      </button>
+      <div id="vaultBody" hidden>
+        <form id="vaultForm" autocomplete="off">
+          <input id="pw" type="password" inputmode="numeric" maxlength="8" aria-label="密碼" placeholder="密碼">
+          <button type="submit">打開</button>
+          <p class="hint">提示：生日</p>
+          <p class="err" id="pwErr" role="alert" hidden>密碼不對，再試一次</p>
+        </form>
+      </div>
+      <div id="secretOut" hidden></div>
+    </div>
+
     <footer>有問題直接找大姐（卉如）、小臻</footer>
   </section>
 
@@ -175,132 +222,151 @@ footer{font-size:13px;color:var(--muted);text-align:center;padding-top:12px}
   <section class="inner" id="p-props" role="tabpanel" aria-labelledby="t-props" hidden>
     <div>
       <h2>準備清單</h2>
-      <p class="lead">找到自己的名字，準備好一項就打勾。打勾只存在你自己的手機</p>
+      <p class="lead">找到自己的名字，確認好一項就打勾。打勾只存在你自己的手機</p>
     </div>
     <div class="props" id="propGrid"></div>
+    <footer>其他整理大家一起來</footer>
   </section>
 </main>
 
 <script>
 const G = {
   ctrl:['大姐','小臻','晏丞'],
-  host:['啟宏哥哥','惠琪姐姐'],
   setup:['柏霖','柏勳','祈芸','萱萱'],
-  water:['禹丞','沛涵'],
   av:['君君','竑銘'],
+  water:['禹丞','沛涵'],
+  host:['啟宏哥哥','惠琪姐姐'],
 };
 const ALL = Object.values(G).flat();
 
-/* [標題, 組別, 說明, 葉子顏色] */
+/* 分工一覽 [職責, 人, 小字, 葉子顏色] */
 const ROSTER = [
-  ['活動總控、遊戲確認、籤筒', G.ctrl, '全部遊戲流程、道具和設備最後確認，現場帶第 1–5 關', '--pumpkin'],
-  ['誰是我的枕邊人 主持', G.host, 'Day 2 晚會第 6 關，cue 人上台、進行活動', '--maple'],
-  ['燈飾佈置、桌椅安排', G.setup, '民宿燈飾、照片佈置，團康和晚會前後擺桌椅，麵粉關前鋪地墊。弄完就去幫忙準備水球', '--ginkgo'],
-  ['水球、水槍、潑水道具', G.water, '灌水球、準備水槍和潑水道具，團康前把公共水球分放三區，第 3 關前發獎勵水球', '--teal'],
-  ['投影機、投影幕、音響', G.av, '架設位置、投影播放、音響、麥克風測試和現場操作', '--olive'],
-  ['三天拍照', ['小臻'], '小臻主要負責：大合照、遊戲過程、晚會。其他人有空就幫忙多捕捉畫面，照片都丟家族群組', '--ginkgo'],
+  ['活動總控', G.ctrl, '有問題找大姐、小臻', '--pumpkin'],
+  ['燈飾佈置、桌椅安排', G.setup, '', '--ginkgo'],
+  ['投影機、投影幕、音響架設', G.av, '', '--olive'],
+  ['水球、水槍準備', G.water, '', '--teal'],
+  ['三天拍照', ['小臻'], '其他人有空就幫忙拍', '--maple'],
 ];
 
-/* 時間軸:[時間, 小字, 標題, [ [負責人, [工作…]] … ], 提醒] */
+/* 時間軸 [時間, 小字, 標題, [ [負責人, [工作…]] … ], 提醒] */
 const DAYS = [
- {cls:'d1', title:'Day 1 晚上', date:'10/24（六）', note:'晚餐 58甕仔雞後回到民宿', slots:[
+ {cls:'d1', title:'Day 1 晚上', date:'10/24（六）', note:'晚餐後回到民宿', slots:[
   ['到民宿','先做','全體場勘', [
-    [ALL, ['看團康場地（玩水區）、晚會場地、外燴餐車位置','確認插座、延長線、水龍頭和水管在哪裡','定好安全區、設備擺放區，設備要離玩水區遠一點']],
+    [ALL, ['看團康場地、晚會場地、外燴餐車位置','找好插座、延長線、水龍頭','設備放的位置要離玩水區遠一點']],
   ]],
   ['場勘後','分頭','各組準備', [
-    [G.setup, ['確認燈飾、照片佈置要放的位置','把燈飾掛好、照片擺好，通電測試可以正常亮','清點民宿桌椅數量，規劃團康、晚餐、晚會三種擺法']],
-    [G.av, ['決定投影機、投影幕、音響的架設位置','測試投影可以正常播放（影片、照片）','測試音響、兩支麥克風都有聲音，順便準備第 4 關的歌']],
-    [G.water, ['清點長筷子、大氣球、小水球、水槍、水桶、水瓢、臉盆、雨傘','開始灌水球，灌好放在水桶裡']],
-    [G.ctrl, ['做全員名字籤筒（以防萬一，臨時要抽人時用）','做麵粉關的懲罰籤','對照道具清單逐關確認','準備第 6 關上場名單（三輪，每輪 4 對）']],
+    [G.setup, ['掛燈飾、擺照片佈置，通電測試','清點桌椅，想好團康、晚餐、晚會三種擺法']],
+    [G.av, ['架設投影機、投影幕、音響','測試投影播放、音響、2 支麥克風']],
+    [G.water, ['清點水球、氣球、水槍等道具','開始灌水球，灌好放水桶']],
+    [G.ctrl, ['做全員名字籤筒、懲罰籤','對照道具清單確認','準備第 6 關上場名單']],
   ]],
-  ['燈飾、投影','弄好後','支援準備水球', [
-    [[...G.setup,...G.av], ['燈飾、桌椅、投影機都確認完，就去幫禹丞、沛涵準備水球']],
-  ], '水球總共 5000 顆，其中 2000 顆是第 1 關獎勵（第 1 回合 500、第 2 回合 500、第 3 回合 1000）'],
+  ['弄好後','支援','一起灌水球', [
+    [[...G.setup,...G.av], ['燈飾、桌椅、投影弄好，就去幫禹丞、沛涵灌水球']],
+  ], '水球共 5000 顆，其中 2000 顆是第 1 關獎勵'],
  ]},
- {cls:'d2', title:'Day 2', date:'10/25（日）', note:'白天大佛、淺田屋、田尾，16:15 回民宿開始團康', slots:[
+ {cls:'d2', title:'Day 2', date:'10/25（日）', note:'16:15 回民宿開始團康', slots:[
   ['出發前','早上','檢查', [
     [G.water, ['確認水球沒破，水桶放陰涼處']],
-    [G.av, ['投影機、音響收好或蓋好，避免下午被水潑到']],
+    [G.av, ['投影機、音響收好或蓋好，避免被水潑到']],
   ]],
-  ['16:15','團康','回民宿馬上開始', [
-    [G.setup, ['先把團康場地的桌椅移開，清出空間']],
-    [G.water, ['團康開始前，把第 3 關的公共水球分放三個區域']],
-    [G.ctrl, ['帶第 1 關「球球你別破」：三回合計時賽，記下每回合時間和名次','三回合統計完，第一名潑第三名 30 秒，只潑一次','帶第 2 關「這一瓢，我敬你」：每隊派 1 人，3 人一起猜拳，平手重猜，每次換不同隊員上場']],
-    [G.water, ['第 1 關每回合結束，記下贏的隊伍拿到幾顆獎勵水球（第 1、2 回合各 500 顆，第 3 回合 1000 顆）','第 3 關開打前，把獎勵水球發給各隊，準備好跟大姐回報']],
-    [G.ctrl, ['第 3 關「濕身大逃殺」吹哨：一聲長哨開始、三聲短哨全員停手','提醒大家：安全區不能攻擊，只能打肩膀以下']],
-    [ALL, ['第 3 關結束，大家一起撿水球碎片']],
-  ], '穿可以濕的衣服，手機記得收好'],
+  ['16:15','團康','玩水', [
+    [G.setup, ['移開桌椅，清出玩水空間']],
+    [G.water, ['公共水球分放三個區域','第 3 關開打前，把獎勵水球發給各隊']],
+    [ALL, ['第 3 關結束，一起撿水球碎片']],
+  ], '穿可以濕的衣服，手機收好'],
   ['18:00','晚餐','外燴餐車', [
-    [G.setup, ['擺好晚餐和晚會的桌椅','打開燈飾，確認照片佈置沒被弄亂']],
+    [G.setup, ['擺好晚餐、晚會桌椅','打開燈飾，檢查照片佈置']],
     [G.av, ['開投影、音響，麥克風再試一次音']],
-    [G.host, ['跟大姐對第 6 關流程和上場名單']],
   ]],
   ['19:00','晚會','第 4–6 關', [
-    [G.ctrl, ['帶第 4 關「當我們同在一起」']],
-    [G.av, ['第 4 關播歌，晚會全程顧音響和麥克風']],
-    [G.ctrl, ['帶第 5 關「拜託你別笑……噗」，計時 3 分鐘、比麵粉、讓輸隊抽懲罰籤']],
-    [G.setup, ['第 5 關開始前先鋪好地墊或報紙']],
-    [ALL, ['第 5 關結束，大家一起清麵粉：掃地、擦桌，清完再開始第 6 關']],
-    [G.host, ['主持第 6 關「誰是我的枕邊人」，分三輪，每輪 4 對','cue 人上台、宣布四大鐵律：摘配件、禁出聲、戴眼罩、摸哪裡聽主持人','數「3、2、1」一起拿下眼罩']],
-    [G.ctrl, ['第 6 關準備眼罩、幫主持人叫下一輪的人']],
+    [G.av, ['第 4 關播歌，全程顧音響和麥克風']],
+    [G.setup, ['第 5 關前鋪好地墊或報紙']],
+    [ALL, ['第 5 關結束，一起清麵粉']],
   ]],
   ['晚會後','收場','復原', [
     [G.av, ['收投影機、投影幕、音響、麥克風']],
-    [ALL, ['晚會結束就收燈飾和照片佈置，大家一起收']],
     [G.setup, ['桌椅歸位']],
     [G.water, ['水桶、水槍、臉盆、雨傘收好']],
+    [ALL, ['一起收燈飾和照片佈置']],
   ]],
  ]},
  {cls:'d3', title:'Day 3', date:'10/26（一）', note:'退房出發前', slots:[
   ['出發前','退房','收尾', [
-    [G.ctrl, ['所有道具、器材點齊上車，民宿環境最後巡一次']],
+    [G.ctrl, ['道具、器材點齊上車，民宿最後巡一次']],
   ]],
  ]},
 ];
 
-/* 準備清單:依負責人列,不分關卡 [項目名稱, 負責人, 東西…] */
+/* 準備清單 [標題, 負責人, 項目…] */
 const PROPS = [
-  ['水球、氣球、水槍', G.water, ['小水球共 5000 顆（其中 2000 顆是第 1 關獎勵：第 1 回合 500、第 2 回合 500、第 3 回合 1000）','大氣球','長筷子','水槍','水瓢','水桶（裝水、裝水球）','臉盆（每隊 1 個）','雨傘（擋水用）']],
-  ['燈飾佈置、桌椅安排', G.setup, ['燈飾','照片佈置','延長線','地墊或報紙（麵粉關用）']],
-  ['投影、音響', G.av, ['投影機','投影幕','音響','麥克風 2 支','〈當我們同在一起〉音樂檔','延長線']],
-  ['麵粉、紙牌、眼罩', G.ctrl, ['麵粉','撲克牌（每人 1 張）','鏟麵粉的湯匙','杯子（每隊 1 個）','懲罰籤','眼罩 4 個','籤筒（全員名字籤，以防萬一）','哨子','安全區標示','計時用手機','第 6 關上場名單（三輪，每輪 4 對）']],
+  ['燈飾佈置、桌椅安排', G.setup, ['燈飾','照片佈置','延長線','桌椅（清點數量）','地墊或報紙（麵粉關用）']],
+  ['投影機、投影幕、音響架設', G.av, ['投影機','投影幕','音響','麥克風 2 支','〈當我們同在一起〉音樂檔','延長線']],
+  ['水球、水槍準備', G.water, ['小水球 5000 顆（含 2000 顆第 1 關獎勵）','大氣球','長筷子','水槍','水瓢','水桶','臉盆','雨傘']],
+  ['活動總控', G.ctrl, ['麵粉','撲克牌','鏟麵粉的湯匙','杯子','懲罰籤','眼罩 4 個','籤筒（全員名字籤）','哨子','安全區標示','計時用手機','第 6 關上場名單']],
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const label = n => n === '大姐' ? '大姐（卉如）' : n;
-const tags = arr => `<div class="who">${arr.map(n=>`<b>${esc(n)}</b>`).join('')}</div>`;
-const links = arr => `<div class="who">${arr.map(n=>`<button type="button" data-go="${esc(n)}">${esc(label(n))}</button>`).join('')}</div>`;
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} },
+};
 
 /* 分工 */
-document.getElementById('rosterGrid').innerHTML = ROSTER.map(([t,who,d,k]) =>
-  `<div class="role"><h3><i class="dot" style="--k:var(${k})"></i>${esc(t)}</h3>${links(who)}<p>${esc(d)}</p></div>`).join('');
+document.getElementById('rosterGrid').innerHTML = ROSTER.map(([t,who,s,k]) => `
+  <div class="role">
+    <h3><i class="dot" style="--k:var(${k})"></i>${esc(t)}</h3>
+    <div class="who">${who.map(n=>`<button type="button" data-go="${esc(n)}">${esc(label(n))}</button>`).join('')}</div>
+    ${s ? `<small>${esc(s)}</small>` : ''}
+  </div>`).join('');
 
 /* 時間軸 */
-document.getElementById('p-timeline').innerHTML = DAYS.map(day => `
-  <div class="day ${day.cls}">
-    <div class="dayhead"><h2>${esc(day.title)}</h2><span>${esc(day.date)}・${esc(day.note)}</span></div>
-    ${day.slots.map(([t,s,h,tasks,tip]) => `
+const tl = document.getElementById('p-timeline');
+function renderTimeline(me){
+  const all = me === '全部';
+  const days = DAYS.map(day => {
+    const slots = day.slots.map(([t,s,h,tasks,tip]) => {
+      const mine = tasks.filter(([who]) => all || who.includes(me));
+      if (!mine.length) return '';
+      return `
       <div class="slot">
         <div class="time">${esc(t)}<small>${esc(s)}</small></div>
         <div class="slotbody">
           <h3>${esc(h)}</h3>
-          ${tasks.map(([who,list]) => `
-            <div class="task" data-who="${esc(who.join(','))}">
-              ${tags(who.length === ALL.length ? ['全體工作人員'] : who.map(label))}
-              <ul>${list.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
-            </div>`).join('')}
+          ${mine.map(([who,list]) => {
+            const everyone = who.length === ALL.length;
+            const names = everyone ? '<b>全體工作人員</b>' : who.map(n => `<b class="${n===me?'me':''}">${esc(label(n))}</b>`).join('');
+            return `<div class="task"><div class="who">${names}</div><ul>${list.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
+          }).join('')}
           ${tip ? `<p class="tip"><b>提醒</b>${esc(tip)}</p>` : ''}
         </div>
-      </div>`).join('')}
-  </div>`).join('');
+      </div>`;
+    }).join('');
+    if (!slots) return '';
+    return `<div class="day ${day.cls}"><div class="dayhead"><h2>${esc(day.title)}</h2><span>${esc(day.date)}・${esc(day.note)}</span></div>${slots}</div>`;
+  }).join('');
+  tl.innerHTML = days;
+}
+
+/* 下拉選單:全部 + 依組別列名字 */
+const GROUP_NAME = {ctrl:'活動總控', setup:'燈飾、桌椅', av:'投影、音響', water:'水球、水槍', host:'主持人'};
+const sel = document.getElementById('who');
+sel.innerHTML = '<option value="全部">全部</option>' +
+  Object.entries(G).map(([k,arr]) => `<optgroup label="${GROUP_NAME[k]}">${arr.map(n=>`<option value="${esc(n)}">${esc(label(n))}</option>`).join('')}</optgroup>`).join('');
+function pick(n){
+  if (n !== '全部' && !ALL.includes(n)) n = '全部';
+  sel.value = n; renderTimeline(n); store.set('staff-me', n);
+}
+sel.addEventListener('change', () => { pick(sel.value); toTop(); });
+pick(store.get('staff-me') || '全部');
 
 /* 道具 */
 let saved = {};
-const PKEY = 'staff-props-v2';   // 改成依負責人分組,舊的打勾紀錄對不上,換新的 key
-try { saved = JSON.parse(localStorage.getItem(PKEY) || '{}') || {}; } catch(e) {}
+const PKEY = 'staff-props-v3';
+try { saved = JSON.parse(store.get(PKEY) || '{}') || {}; } catch(e) {}
 document.getElementById('propGrid').innerHTML = PROPS.map(([title,who,items],k) => `
   <div class="prop">
-    ${tags(who.map(label))}
+    <div class="who">${who.map(n=>`<b>${esc(label(n))}</b>`).join('')}</div>
     <h3>${esc(title)}</h3>
     <ul class="checks">${items.map((x,i) => { const id = `g${k}-${i}`;
       return `<li><label><input type="checkbox" id="${id}" ${saved[id]?'checked':''}><span>${esc(x)}</span></label></li>`; }).join('')}</ul>
@@ -317,27 +383,45 @@ function counts(){
 document.getElementById('propGrid').addEventListener('change', e => {
   if (e.target.type !== 'checkbox') return;
   saved[e.target.id] = e.target.checked;
-  try { localStorage.setItem(PKEY, JSON.stringify(saved)); } catch(err) {}
+  store.set(PKEY, JSON.stringify(saved));
   counts();
 });
 counts();
 
-/* 依人篩選 */
-const chips = document.getElementById('chips');
-chips.innerHTML = ['全部', ...ALL].map(n => `<button type="button" data-n="${esc(n)}" aria-pressed="${n==='全部'}">${esc(n)}</button>`).join('');
-function filterBy(n){
-  const all = n === '全部';
-  chips.querySelectorAll('button').forEach(x => {
-    const on = x.dataset.n === n; x.setAttribute('aria-pressed', on);
-    if (on) x.scrollIntoView({block:'nearest', inline:'center'});
-  });
-  document.querySelectorAll('.task').forEach(t => { t.hidden = !all && !t.dataset.who.split(',').includes(n); });
-  document.querySelectorAll('.slot').forEach(sl => { sl.hidden = !sl.querySelector('.task:not([hidden])'); });
-  document.querySelectorAll('.day').forEach(d => { d.hidden = !d.querySelector('.slot:not([hidden])'); });
+/* 第六關:內容加密,要正確密碼才解得開 */
+const VAULT = {"iter":300000,"salt":"bXD7f/8+Uy5eaKj9U57z8w==","iv":"SGvoGVn1oFqEqQje","ct":"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","keys":[{"iv":"FUOjMX6wSFbyjVRc","ct":"emVO4dLS+6QxBmdLAvDaS+qxw2XqX8kBg8eC02jGerKAhPC0gOKowooJOEW0pKbw"},{"iv":"fdJsV24o7ueSRmbt","ct":"5mMQOPCV2pGvd+PgkP12aKXJ/HYbmzzD4nLURdPHSbivdwOUUteQuhFLcGD9gE/d"},{"iv":"Qq0w7NGWp7T/cnTv","ct":"mOdjWqZVD6jqhcxoIaGz5KdtQNOFOkbgtVf9N2301OmbkJpY7wuGtvtnu8hBsCRd"},{"iv":"mOb6/dYH+3/eFtT8","ct":"jnDPOY7rVldZ4ThesORsSIcMTGewZZm/Xpp++sQl9mSe9s7fxzZYjfe2RSg+6ijQ"}]};
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function openVault(pw){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+  const kek = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b64(VAULT.salt), iterations:VAULT.iter, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  for (const w of VAULT.keys) {
+    try {
+      const raw = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(w.iv)}, kek, b64(w.ct));
+      const dek = await crypto.subtle.importKey('raw', raw, 'AES-GCM', false, ['decrypt']);
+      const html = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(VAULT.iv)}, dek, b64(VAULT.ct));
+      return new TextDecoder().decode(html);
+    } catch(e) {}
+  }
+  return null;
 }
-chips.addEventListener('click', e => {
-  const b = e.target.closest('button'); if (!b) return;
-  filterBy(b.dataset.n); toTop();
+const vaultBtn = document.getElementById('vaultBtn'), vaultBody = document.getElementById('vaultBody');
+const out = document.getElementById('secretOut'), pwErr = document.getElementById('pwErr'), pw = document.getElementById('pw');
+vaultBtn.addEventListener('click', () => {
+  const open = vaultBody.hidden && out.hidden;
+  vaultBody.hidden = !open; vaultBtn.setAttribute('aria-expanded', open);
+  if (open) pw.focus();
+});
+document.getElementById('vaultForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  pwErr.hidden = true;
+  const html = await openVault(pw.value.trim());
+  if (!html) { pwErr.hidden = false; pw.select(); return; }
+  pw.value = ''; vaultBody.hidden = true; vaultBtn.hidden = true;
+  out.innerHTML = html + '<button type="button" class="lockagain" id="relock">鎖起來</button>';
+  out.hidden = false;
+  document.getElementById('relock').addEventListener('click', () => {
+    out.innerHTML = ''; out.hidden = true; vaultBtn.hidden = false; vaultBtn.setAttribute('aria-expanded', false);
+  });
 });
 
 /* 分頁 */
@@ -367,7 +451,7 @@ document.querySelector('.tabs').addEventListener('keydown', e => {
 });
 document.getElementById('rosterGrid').addEventListener('click', e => {
   const b = e.target.closest('[data-go]'); if (!b) return;
-  show('timeline'); filterBy(b.dataset.go); toTop();
+  show('timeline'); pick(b.dataset.go); toTop();
 });
 const start = location.hash.slice(1);
 show(TABS.includes(start) ? start : 'roster');
