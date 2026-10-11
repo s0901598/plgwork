@@ -298,12 +298,14 @@ const DAYS = [
  ]},
 ];
 
-/* 準備清單 [標題, 負責人, 項目…] */
+/* 準備清單 [勾選代號, 標題, 負責人, 項目…]
+   勾選代號固定不變,調整卡片順序或拆組時,大家已經打的勾不會跑掉 */
 const PROPS = [
-  ['燈飾佈置、桌椅安排', G.setup, ['燈飾','照片佈置','延長線','桌椅（清點數量）','地墊或報紙（麵粉關用）','水槍 2 支','大垃圾袋','照片列印機']],
-  ['投影機、投影幕、音響架設', G.av, ['投影機','投影幕','音響','麥克風 2 支','延長線','水槍 2 支']],
-  ['水球、水槍準備', G.water, ['小水球 5000 顆（含 2000 顆第 1 關獎勵）','大氣球','長筷子','水槍 2 支','水瓢','水桶','臉盆','雨傘']],
-  ['活動總控', G.ctrl, ['麵粉','撲克牌','鏟麵粉的湯匙','杯子','懲罰籤','眼罩 4 個','籤筒（全員名字籤）','哨子','安全區標示','計時用手機','〈當我們同在一起〉音樂檔','第 6 關上場名單','水槍 2 支']],
+  ['g0', '燈飾佈置、桌椅安排', ['柏霖','祈芸'], ['燈飾','照片佈置','延長線','桌椅（清點數量）','地墊或報紙（麵粉關用）','水槍 2 支']],
+  ['g4', '燈飾佈置、桌椅安排', ['柏勳','瑄瑄'], ['水槍 2 支','大垃圾袋','照片列印機']],
+  ['g1', '投影機、投影幕、音響架設', G.av, ['投影機','投影幕','音響','麥克風 2 支','延長線','水槍 2 支']],
+  ['g2', '水球、水槍準備', G.water, ['小水球 5000 顆（含 2000 顆第 1 關獎勵）','大氣球','長筷子','水槍 2 支','水瓢','水桶','臉盆','雨傘']],
+  ['g3', '活動總控', G.ctrl, ['麵粉','撲克牌','鏟麵粉的湯匙','杯子','懲罰籤','眼罩 4 個','籤筒（全員名字籤）','哨子','安全區標示','計時用手機','〈當我們同在一起〉音樂檔','第 6 關上場名單','水槍 2 支']],
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -365,11 +367,13 @@ pick(store.get('staff-me') || '全部');
 let saved = {};
 const PKEY = 'staff-props-v3';
 try { saved = JSON.parse(store.get(PKEY) || '{}') || {}; } catch(e) {}
-document.getElementById('propGrid').innerHTML = PROPS.map(([title,who,items],k) => `
+/* 柏勳、瑄瑄拆成自己一組:原本勾過的大垃圾袋、照片列印機搬到新卡片 */
+[['g0-6','g4-1'],['g0-7','g4-2']].forEach(([a,b]) => { if (a in saved){ if (!(b in saved)) saved[b] = saved[a]; delete saved[a]; } });
+document.getElementById('propGrid').innerHTML = PROPS.map(([gid,title,who,items]) => `
   <div class="prop">
     <div class="who">${who.map(n=>`<b>${esc(label(n))}</b>`).join('')}</div>
     <h3>${esc(title)}</h3>
-    <ul class="checks">${items.map((x,i) => { const id = `g${k}-${i}`;
+    <ul class="checks">${items.map((x,i) => { const id = `${gid}-${i}`;
       return `<li><label><input type="checkbox" id="${id}" ${saved[id]?'checked':''}><span>${esc(x)}</span></label></li>`; }).join('')}</ul>
     <span class="count"></span>
   </div>`).join('');
