@@ -360,10 +360,11 @@ sel.innerHTML = '<option value="全部">全部</option>' +
   Object.entries(G).map(([k,arr]) => `<optgroup label="${GROUP_NAME[k]}">${arr.map(n=>`<option value="${esc(n)}">${esc(label(n))}</option>`).join('')}</optgroup>`).join('');
 function pick(n){
   if (n !== '全部' && !ALL.includes(n)) n = '全部';
-  sel.value = n; renderTimeline(n); store.set('staff-me', n);
+  sel.value = n; renderTimeline(n);
 }
 sel.addEventListener('change', () => { pick(sel.value); toTop(); });
-pick(store.get('staff-me') || '全部');
+/* 每次打開都從「全部」開始,不記上次選的名字 */
+pick('全部');
 
 /* 道具 */
 let saved = {};
